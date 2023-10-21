@@ -13,6 +13,8 @@ Download CV
 1. clone the repository or downlaod zip file and extract it
 
 2. Run this command
+   
    ``` npm install  ```
-The server starts running on https://localhost:3000
+   
+The server will start running on https://localhost:3000
    
