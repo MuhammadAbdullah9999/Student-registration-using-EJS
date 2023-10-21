@@ -1,0 +1,79 @@
+<%- include('partials/header') %>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center my-4">Users List</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Course(s)</th>
+                    <th>Credit Card</th>
+                    <th>City</th>
+                    <th>Favorite Language(s)</th>
+                    <th>Profile Image</th>
+                    <th>View</th>
+                    <th>Delete</th>
+                    <th>Update</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% users.forEach(function(user, index) { %>
+                    <tr>
+                        <td><%= index + 1 %></td>
+                        <td><%= user.name %></td>
+                        <td style="margin-right: 5%;"><%= user.password %></td>
+                        <td>
+                            <% if (Array.isArray(user.course)) { %>
+                                <ul>
+                                    <% user.course.forEach(function(course) { %>
+                                        <li><%= course %></li>
+                                    <% }); %>
+                                </ul>
+                            <% } else { %>
+                                <%= user.course %>
+                            <% } %>
+                        </td>
+                        <td><%= user.credit_card %></td>
+                        <td><%= user.city %></td>
+                        <td>
+                            <% if (Array.isArray(user.languages)) { %>
+                                <ul>
+                                    <% user.languages.forEach(function(language) { %>
+                                        <li><%= language %></li>
+                                    <% }); %>
+                                </ul>
+                            <% } else { %>
+                                <%= user.languages %>
+                            <% } %>
+                        </td>
+                        <!-- <td>
+                            <% if (user.cv) { %>
+                                <a href="/uploads/<%= user.cv %>" download>Download CV</a>
+                            <% } else { %>
+                                No CV uploaded
+                            <% } %>
+                        </td> -->
+                        <td>
+                            <img src="/uploads/<%= user.image %>" alt="User Picture" height="100" width="100"> <!-- Display user picture -->
+                        </td>
+                        <td>
+                            <a href="view?id=<%= user.id %>"><button class="btn btn-primary">View</button></a>
+                        </td>
+                        <td>
+                            <a href="delete?id=<%= user.id %>"><button class="btn btn-danger">Delete</button></a>
+                        </td>
+                        <td>
+                            <a href="update?id=<%= user.id %>"><button class="btn btn-success">Update</button></a>
+                        </td>
+
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+    <%- include('partials/footer') %>
+</body>
+</html>
